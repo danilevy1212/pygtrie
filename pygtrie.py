@@ -1240,6 +1240,22 @@ class StringTrie(Trie):
             trie[key] = value
         return trie
 
+    def search_first_and_collect(self, keys, case_insensitive=False):
+        """ Returns a list of nodes whose key matches one of the strings contained in the "Keys" list.
+
+        Nodes whose key match one of the keys are not explored any further, meaning, their children wont be searched
+        for more matching nodes.
+
+        Args:
+            keys: String list of words
+            case_insensitive: Bool that indicates if the matching is done case_insensitively or not.
+
+        Returns
+            List of Nodes with matching key values.
+        """
+
+        return self._root.search_first_and_collect(self, keys, case_insensitive=case_insensitive)
+
     def _path_from_key(self, key):
         return key.split(self._separator)
 
